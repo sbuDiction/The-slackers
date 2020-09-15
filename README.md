@@ -2,7 +2,7 @@
 
 # The Slackers
 
-**Group Names**
+**Participants**
 * Sibusiso
 * Sinoxolo
 * Yonnela
