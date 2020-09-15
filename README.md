@@ -19,4 +19,4 @@
 |![image1](project_images/fourth.png) | First screen : Passenger can choose his/her destination and the amount it will charge and if the passenger will be getting any change or not. Second screen : Driver will have access to passenger information(How much has the passenger payed and how much will they need to get as a change). Option to view his total trips for the day and his target. Third screen: News feed - Any taxi strike in the area and petrol prices if has increased or not.|
 |![image1](project_images/fifith.png) | Crazy 8 Prototype for our web app. |
 |![image1](project_images/sixth.png) | Workflow for Passengers |
-|![image1](project_images/seventh.png) | Workflow for Driver|
+|![image1](project_images/seventh.png) | Workflow for Driver |
