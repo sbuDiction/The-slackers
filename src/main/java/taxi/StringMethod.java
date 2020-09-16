@@ -1,4 +1,4 @@
-package taxi.destinations;
+package taxi;
 
 public class StringMethod {
 
