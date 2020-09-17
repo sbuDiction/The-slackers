@@ -4,6 +4,7 @@ import org.jdbi.v3.core.Jdbi;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import taxi.calculations.CalculateChange;
+import taxi.weeks.DaysInWeeks;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -64,7 +65,7 @@ public class App {
                 Map<String, Object> map = new HashMap<>();
 
                 map.put("destinations", taxiDriver.getLocations());
-                map.put("person", taxiDriver.getPeople());
+//                map.put("person", taxiDriver.getPeople());
                 return new ModelAndView(map, "addDestination.hbs");
             }, new HandlebarsTemplateEngine());
 
@@ -72,6 +73,9 @@ public class App {
                 Map<String, Object> map = new HashMap<>();
 
                 map.put("passengers", taxiDriver.getPassengerData());
+                map.put("data", "[1,3,5,6,7,100,9]");
+                map.put("theGraphLabel", "The graph label");
+                map.put("days", taxiDriver.getDays());
                 return new ModelAndView(map, "driver.hbs");
             }, new HandlebarsTemplateEngine());
 
