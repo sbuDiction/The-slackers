@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<header>
+    <div class = "NavigationBar">
+        <nav>
+            <ls><button>Passenger</button></ls>
+            <ls><button>Driver</button></ls>
+        </nav><br>
+    </div>
+</header>
+
+<body>
+<!-- Need to add functions for the dropdown -->
+<div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+    <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <form method="post" action="/person">
+            <div class="form-group">
+                <label for=" ">First name :</label><br>
+                <input type="text" class="form-control {{firstNameInvalid}}" name="firstName"><br>
+                <label for=" ">Price :</label><br>
+                <input type="text" class="form-control {{firstNameInvalid}}" name="price"><br>
+                <label for=" ">Amount paying :</label><br>
+                <input type="text" class="form-control {{firstNameInvalid}}" name="amountPaying"><br>
+                <label for=" ">Change :</label><br>
+                <input type="text" class="form-control {{firstNameInvalid}}" name="change"><br>
+                <br>
+                <input type="submit" value="Submit">
+            </div>
+
+</body>
+
+<footer>
+
+</footer>
+</html>
