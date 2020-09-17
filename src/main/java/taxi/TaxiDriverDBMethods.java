@@ -12,12 +12,16 @@ import taxi.transactions.TransactionHistory;
 import taxi.weeks.Days;
 import taxi.weeks.DaysInWeeks;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
 public class TaxiDriverDBMethods {
 
     private Jdbi jdbi;
+    List<Person> personList;
+    int id;
 
     public TaxiDriverDBMethods(Jdbi jdbi) {
         this.jdbi = jdbi;
@@ -35,6 +39,7 @@ public class TaxiDriverDBMethods {
                 .bind(0, username)
                 .mapToBean(Person.class)
                 .list());
+        setPersonList(username);
     }
 
     public void setDestinationForUser(int userId, int travelId) {
@@ -73,13 +78,21 @@ public class TaxiDriverDBMethods {
     }
 
     public void addTotal(int priceId) {
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
+        String formattedDate = time.format(myFormatObj);
+        System.out.println(formattedDate);
+
         List<TransactionHistory> transactionMaps = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM HISTORY WHERE PRICE_REF = ?")
                 .bind(0, priceId))
                 .mapToBean(TransactionHistory.class)
                 .list();
+
         if (transactionMaps.size() == 0) {
             jdbi.withHandle(handle -> handle.createUpdate("INSERT INTO HISTORY (PRICE_REF, DAYS_REF, TIME_STAMP) VALUES (?, ?, ?)")
-                    .bind(0, priceId).bind(1,)
+                    .bind(0, priceId)
+                    .bind(1, "")
+                    .bind(2, formattedDate)
                     .execute());
         } else {
             jdbi.withHandle(handle -> handle.createUpdate("UPDATE HISTORY SET PRICE_REF = ? WHERE PRICE_REF = ?")
@@ -141,4 +154,16 @@ public class TaxiDriverDBMethods {
         return daysList;
     }
 
+    public List<Person> setPersonList(String name) {
+        return this.personList = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM USER_NAMES WHERE FIRST_NAME = ?")
+                .bind(0, name)
+                .mapToBean(Person.class)
+                .list());
+
+    }
+
+    public List<Person> getPersonList() {
+        System.out.println(personList.size());
+        return personList;
+    }
 }

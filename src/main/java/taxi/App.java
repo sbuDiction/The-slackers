@@ -65,7 +65,7 @@ public class App {
                 Map<String, Object> map = new HashMap<>();
 
                 map.put("destinations", taxiDriver.getLocations());
-//                map.put("person", taxiDriver.getPeople());
+                map.put("person", taxiDriver.getPersonList());
                 return new ModelAndView(map, "addDestination.hbs");
             }, new HandlebarsTemplateEngine());
 
@@ -96,7 +96,6 @@ public class App {
                 System.out.println(locationId);
 
                 taxiDriver.setDestinationForUser(Integer.parseInt(userId), Integer.parseInt(locationId));
-
                 response.redirect("/destination");
                 return "";
             });
