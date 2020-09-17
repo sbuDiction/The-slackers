@@ -1,10 +1,11 @@
-package taxi.transactions;
+package taxi.calculations;
 
-public class TransactionMap {
+public class DestinationPrice {
 
     double price;
 
     public void setPrice(double price) {
+        System.out.println(price);
         this.price = price;
     }
 
