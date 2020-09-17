@@ -15,12 +15,10 @@ public class Destination {
     }
 
     public void setLocationName(String locationName) {
-        System.out.println(locationName);
         this.locationName = locationName;
     }
 
     public void setId(int id) {
-        System.out.println(id);
         this.id = id;
     }
 
@@ -29,7 +27,6 @@ public class Destination {
     }
 
     public void setPrice(double price) {
-        System.out.println(price);
         this.price = price;
     }
 

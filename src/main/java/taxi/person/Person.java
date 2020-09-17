@@ -1,10 +1,7 @@
 package taxi.person;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class Person {
+    int id;
     String firstName;
     double amountPaid;
 
@@ -27,6 +24,13 @@ public class Person {
         this.amountPaid = amountPaid;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;

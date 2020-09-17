@@ -17,7 +17,7 @@ CREATE TABLE DRIVER_TRACKER
     id SERIAL PRIMARY KEY,
     current_day TEXT NOT NULL,
     money_in decimal(10,2) NOT NULL,
-    set_target INT NOT NULL,
+    set_target decimal(10,2) NOT NULL,
     target_measure decimal(10,2) NOT NULL
 );
 
