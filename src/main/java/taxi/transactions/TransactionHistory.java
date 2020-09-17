@@ -2,7 +2,7 @@ package taxi.transactions;
 
 
 public class TransactionHistory {
-
+    double total;
     int priceRef;
     int daysRef;
     String timeStamp;
@@ -31,11 +31,11 @@ public class TransactionHistory {
         return timeStamp;
     }
 
-    //    public static void main(String[] args) {
-//        LocalDateTime time = LocalDateTime.now();
-//        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
-//
-//        String formattedDate = time.format(myFormatObj);
-//        System.out.println(formattedDate);
-//    }
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getTotal() {
+        return total;
+    }
 }

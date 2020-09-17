@@ -38,7 +38,8 @@ public class TransactionCalculations {
     }
 
     public double getChange() {
-        return change;
+        System.out.println();
+        return calculateChange(amountPaid, price);
     }
 
     public String getLocationName() {
@@ -50,7 +51,7 @@ public class TransactionCalculations {
     }
 
     public double calculateChange(double amount_paid, double price) {
-       double amount = this.amountPaid = amount_paid;
+        double amount = this.amountPaid = amount_paid;
         double cost = this.price = price;
         change = amount_paid - price;
         return change;

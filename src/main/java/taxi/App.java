@@ -52,7 +52,6 @@ public class App {
         try {
             port(getHerokuAssignedPort());
             TaxiDriverDBMethods taxiDriver = new TaxiDriverDBMethods(getJdbiDatabaseConnection());
-            taxiDriver.setDestinationForUser(19, 3);
             get("/", (req, res) -> {
                 Map<String, Object> map = new HashMap<>();
 
