@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="Styles1.css">
 </head>
 <header>
     <div class = "NavigationBar">
@@ -17,63 +16,50 @@
 </header>
 
 <body>
-<!-- Need to add functions for the dropdown -->
-<div class= MainPage>
-<!--<div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+
+<!-- Need to add function that will reflect period or give driver options to select period--
+<div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">Select Period</button>
     <div id="myDropdown" class="dropdown-content">
         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+
     </div>
-    <br>-->
 </div>
+-->
 <div class="row">
     <div class="col-6">
         <form method="post" action="/person">
             <div class="form-group">
                 <div class="row">
                     <div class="col-25">
-                        <label for="fname">First Name :</label>
+                        <label for="fname">Set Target :</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="fname" name="firstname" placeholder="Your name.."><br><br>
+                        <input type="text" id="fname" name="firstname" placeholder=" "><br><br>
                     </div>
                     <br>
                 </div>
                 <div class="row">
                     <div class="col-25">
-                        <label for="fname">Price : </label>
+                        <label for="fname">Money Made : </label>
                     </div>
                     <div class="col-75">
                         <input type="text" id="fname" name="firstname" placeholder=" "><br><br>
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="fname">Amount to Pay :</label>
-                    </div>
-                    <div class="col-75">
-                        <input type="text" id="fname" name="firstname" placeholder=" "><br><br>
-                    </div>
-                </div>
+
                 <br>
                 <div class="row">
-                    <div class="col-25">
-                        <label for="fname">Change :</label>
-                    </div>
-                    <div class="col-75">
-                        <input type="text" id="fname" name="firstname" placeholder=" "><br><br>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Start Trip">
                 </div>
             </div>
     </div>
+
 </body>
 
 <footer>
 
 </footer>
+
 </html>
