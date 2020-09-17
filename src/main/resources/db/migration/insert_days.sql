@@ -1,0 +1,7 @@
+INSERT INTO DAYS (days_in_a_week) VALUES ('MONDAY');
+INSERT INTO DAYS (days_in_a_week) VALUES ('TUESDAY');
+INSERT INTO DAYS (days_in_a_week) VALUES ('WEDNESDAY');
+INSERT INTO DAYS (days_in_a_week) VALUES ('THURSDAY');
+INSERT INTO DAYS (days_in_a_week) VALUES ('FRIDAY');
+INSERT INTO DAYS (days_in_a_week) VALUES ('SATURDAY');
+INSERT INTO DAYS (days_in_a_week) VALUES ('SUNDAY');

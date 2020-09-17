@@ -15,12 +15,10 @@ public class Person {
     }
 
     public void setFirstName(String firstName) {
-        System.out.println(firstName);
         this.firstName = firstName;
     }
 
     public void setAmountPaid(double amountPaid) {
-        System.out.println(amountPaid + " cash");
         this.amountPaid = amountPaid;
     }
 

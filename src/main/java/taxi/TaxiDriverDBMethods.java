@@ -8,6 +8,9 @@ import taxi.person.Person;
 import taxi.settings.SetGoalTracker;
 import taxi.transactions.Transaction;
 import taxi.transactions.TransactionCalculations;
+import taxi.transactions.TransactionHistory;
+import taxi.weeks.Days;
+import taxi.weeks.DaysInWeeks;
 
 import java.util.List;
 
@@ -15,8 +18,6 @@ import java.util.List;
 public class TaxiDriverDBMethods {
 
     private Jdbi jdbi;
-    List<Person> people;
-
 
     public TaxiDriverDBMethods(Jdbi jdbi) {
         this.jdbi = jdbi;
@@ -41,6 +42,7 @@ public class TaxiDriverDBMethods {
             getAmountPaid(userId);
             getDestinationCost(travelId);
             getPassengerData();
+            addTotal(travelId);
             List<Transaction> personList = jdbi.withHandle((handle) -> handle
                     .createQuery("SELECT * FROM USER_TRANSACTIONS WHERE USER_REF = ?")
                     .bind(0, userId)
@@ -70,19 +72,20 @@ public class TaxiDriverDBMethods {
                 .list());
     }
 
-//    public void addTotal(int priceId) {
-//        List<TransactionMap> transactionMaps = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM AMOUNT_PAID WHERE PRICE_REF = ?")
-//                .bind(0, priceId))
-//                .mapToBean(TransactionMap.class)
-//                .list();
-//        if (transactionMaps.size() == 0) {
-//            jdbi.withHandle(handle -> handle.createUpdate("INSERT INTO AMOUNT_PAID (PRICE_REF) VALUES (?)")
-//                    .bind(0, priceId)
-//                    .execute());
-//        } else {
-//            jdbi.withHandle(handle -> handle.createUpdate("UPDATE AMOUNT_PAID SET PRICE_REF = ? WHERE PRICE_REF = ?").bind(0, priceId));
-//        }
-//    }
+    public void addTotal(int priceId) {
+        List<TransactionHistory> transactionMaps = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM HISTORY WHERE PRICE_REF = ?")
+                .bind(0, priceId))
+                .mapToBean(TransactionHistory.class)
+                .list();
+        if (transactionMaps.size() == 0) {
+            jdbi.withHandle(handle -> handle.createUpdate("INSERT INTO HISTORY (PRICE_REF, DAYS_REF, TIME_STAMP) VALUES (?, ?, ?)")
+                    .bind(0, priceId).bind(1,)
+                    .execute());
+        } else {
+            jdbi.withHandle(handle -> handle.createUpdate("UPDATE HISTORY SET PRICE_REF = ? WHERE PRICE_REF = ?")
+                    .bind(0, priceId));
+        }
+    }
 
 
     public List<Destination> getLocations() {
@@ -129,6 +132,13 @@ public class TaxiDriverDBMethods {
                     .bind(4, day)
                     .execute());
         }
+    }
+
+    public List<Days> getDays() {
+        List<Days> daysList = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM DAYS")
+                .mapToBean(Days.class)
+                .list());
+        return daysList;
     }
 
 }
