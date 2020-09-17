@@ -1,7 +1,3 @@
---createdb taxi_fare;
---
---psql taxi_fare;
-
 CREATE TABLE DESTINATIONS
 (
     id SERIAL PRIMARY KEY,
@@ -11,10 +7,9 @@ CREATE TABLE DESTINATIONS
 
 CREATE TABLE USER_TRANSACTIONS
 (
-    id SERIAL PRIMARY KEY,
-    first_name TEXT NOT NULL,
-    amount_paid decimal(10,2) NOT NULL,
-    change decimal(10,2) NOT NULL
+    user_ref INT REFERENCES USER_NAMES (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    change decimal(10,2) NOT NULL,
+    travel_ref INT REFERENCES DESTINATIONS (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE DRIVER_TRACKER
@@ -26,4 +21,15 @@ CREATE TABLE DRIVER_TRACKER
     target_measure decimal(10,2) NOT NULL
 );
 
+CREATE TABLE USER_NAMES
+(
+    id SERIAL PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    amount_paid decimal(10,2) NOT NULL
+);
+
+CREATE TABLE AMOUNT_PAID
+(
+    price_ref INT REFERENCES DESTINATIONS (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
 

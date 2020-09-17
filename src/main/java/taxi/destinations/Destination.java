@@ -1,19 +1,13 @@
 package taxi.destinations;
 
-import java.beans.ConstructorProperties;
 
 public class Destination {
+    int id;
     String locationName;
     double price;
 
     public Destination() {
-    }
-
-    @ConstructorProperties({"location_name", "price"})
-    public Destination(String location_name, double price) {
         super();
-        this.locationName = location_name;
-        this.price = price;
     }
 
     public String getLocationName() {
@@ -25,6 +19,11 @@ public class Destination {
         this.locationName = locationName;
     }
 
+    public void setId(int id) {
+        System.out.println(id);
+        this.id = id;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -32,5 +31,9 @@ public class Destination {
     public void setPrice(double price) {
         System.out.println(price);
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
     }
 }
