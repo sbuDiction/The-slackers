@@ -13,7 +13,6 @@ public class TransactionCalculations {
     }
 
     public void setAmountPaid(double amountPaid) {
-        System.out.println(amountPaid);
         this.amountPaid = amountPaid;
     }
 
@@ -38,7 +37,6 @@ public class TransactionCalculations {
     }
 
     public double getChange() {
-        System.out.println();
         return calculateChange(amountPaid, price);
     }
 

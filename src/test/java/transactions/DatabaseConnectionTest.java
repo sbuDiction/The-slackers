@@ -47,7 +47,7 @@ public class DatabaseConnectionTest {
 
             });
             System.out.println(new Destination().getLocationName());
-            assertEquals(places.size(), 4);
+            assertEquals(places.size(), 31);
         } catch (Exception e) {
             e.printStackTrace();
         }

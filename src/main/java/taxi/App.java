@@ -3,13 +3,11 @@ package taxi;
 import org.jdbi.v3.core.Jdbi;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-import taxi.calculations.CalculateChange;
-import taxi.weeks.DaysInWeeks;
+import taxi.person.Person;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,14 +49,18 @@ public class App {
 
         try {
             port(getHerokuAssignedPort());
+            staticFileLocation("/public");
             TaxiDriverDBMethods taxiDriver = new TaxiDriverDBMethods(getJdbiDatabaseConnection());
             get("/", (req, res) -> {
                 Map<String, Object> map = new HashMap<>();
 
-                List<CalculateChange> change = new ArrayList<>();
+                map.put("destinations", taxiDriver.getLocations());
+                map.put("message", taxiDriver.getMessage());
+                map.put("change", taxiDriver.getChange());
 
                 return new ModelAndView(map, "index.hbs");
             }, new HandlebarsTemplateEngine());
+
 
             get("/destination", (request, response) -> {
                 Map<String, Object> map = new HashMap<>();
@@ -68,34 +70,31 @@ public class App {
                 return new ModelAndView(map, "addDestination.hbs");
             }, new HandlebarsTemplateEngine());
 
+
             get("/driver", (request, response) -> {
                 Map<String, Object> map = new HashMap<>();
 
                 map.put("passengers", taxiDriver.getPassengerData());
-                map.put("data", "[1,3,5,6,7,100,9]");
+                map.put("data", "[1,3,6,7,99,6,8]");
                 map.put("theGraphLabel", "The graph label");
                 map.put("days", taxiDriver.getDays());
+
                 return new ModelAndView(map, "driver.hbs");
             }, new HandlebarsTemplateEngine());
 
+
+//            get("/");
+
+
             post("/passenger", (request, response) -> {
-                Map<String, Object> map = new HashMap<>();
                 String name = request.queryParams("name");
                 String amount = request.queryParams("amount");
-
-                taxiDriver.createUser(name, Double.parseDouble(amount));
-                response.redirect("/destination");
-                return "";
-            });
-
-            post("/add_destination", (request, response) -> {
-                String userId = request.queryParams("name");
                 String locationId = request.queryParams("destination");
-                System.out.println(userId);
-                System.out.println(locationId);
 
-                taxiDriver.setDestinationForUser(Integer.parseInt(userId), Integer.parseInt(locationId));
-                response.redirect("/destination");
+                List<Person> newUser = taxiDriver.createUser(name, Double.parseDouble(amount));
+                taxiDriver.setDestinationForUser((newUser.get(0).getId()), Integer.parseInt(locationId));
+                taxiDriver.getPassengerChange(newUser.get(0).getId());
+                response.redirect("/");
                 return "";
             });
 

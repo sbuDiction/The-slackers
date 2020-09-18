@@ -5,12 +5,10 @@ public class AmountPaid {
     double price;
 
     public void setAmountPaid(double amountPaid) {
-        System.out.println(amountPaid + " passenger amount");
         this.amountPaid = amountPaid;
     }
 
     public void setPrice(double price) {
-        System.out.println(price + " destination price");
         this.price = price;
     }
 

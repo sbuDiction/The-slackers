@@ -1,4 +1,4 @@
-package taxi.calculations;
+package taxi.destinations;
 
 public class DestinationPrice {
 
