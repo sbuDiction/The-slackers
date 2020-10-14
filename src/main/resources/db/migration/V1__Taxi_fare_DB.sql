@@ -5,6 +5,12 @@ CREATE TABLE DESTINATIONS
     price decimal(10,2) NOT NULL
 );
 
+CREATE TABLE DAYS
+(
+    id SERIAL PRIMARY KEY,
+    days_in_a_week TEXT NOT NULL
+);
+
 CREATE TABLE USER_TRANSACTIONS
 (
     user_ref INT REFERENCES USER_NAMES (id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -36,9 +42,14 @@ CREATE TABLE HISTORY
     time_stamp TEXT NOT NULL
 );
 
-CREATE TABLE DAYS
+CREATE TABLE TAXI_PASSENGERS
 (
     id SERIAL PRIMARY KEY,
-    days_in_a_week TEXT NOT NULL
+    first_name TEXT NOT NULL,
+    destination TEXT NOT NULL,
+    passenger_amount DECIMAL(10,2),
+    change DECIMAL(10,2)
 );
+
+
 

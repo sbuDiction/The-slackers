@@ -1,18 +1,15 @@
-package transactions;
-
+package taxi.services;
 
 import org.jdbi.v3.core.Jdbi;
-import org.junit.jupiter.api.Test;
 import taxi.destinations.Destinations;
+import taxi.mappings.Bookings;
 import taxi.passengers.Passenger;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class DatabaseConnectionTest {
+public class TaxiServicesDb {
 
     static Jdbi getJdbiDatabaseConnection() throws URISyntaxException, SQLException {
         ProcessBuilder processBuilder = new ProcessBuilder();
@@ -36,13 +33,16 @@ public class DatabaseConnectionTest {
     }
 
 
-    @Test
-    public void bookTaxiTest() {
+    public void addBookings(String firstName, String destinations, double amount, double change) throws URISyntaxException, SQLException {
+        Jdbi jdbi = getJdbiDatabaseConnection();
         try {
-            Passenger passenger = new Passenger();
-            passenger.bookTaxi("sibusiso", Destinations.DurbanVile, 100);
-
-            assertEquals(85.00, passenger.passengersChange());
+            jdbi.useHandle(handle -> handle
+                    .createUpdate("INSERT INTO TAXI_PASSENGERS (first_name, destination, passenger_amount, change) VALUES (?, ?, ?, ?)")
+                    .bind(0, firstName)
+                    .bind(1, destinations)
+                    .bind(2, amount)
+                    .bind(3, change)
+                    .execute());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.css" rel="stylesheet" />
+    <link href="./stylesheets/style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="ui secondary pointing menu">
+            <a class="active item">
+                Home
+            </a>
+            <a href="/driver" class="item">
+                Driver
+            </a>
+        </div>
+        <div style="padding-left: 450px;" class="ui segment">
+            <h2 class="ui header">
+                <i class="car icon"></i>
+                <div class="content">
+                    TaDA!
+                    <div class="sub header">Taxi and Driver Assistant!</div>
+                </div>
+            </h2>
+        </div>
+        <div style="padding-top: 50px;" class="mx-auto" style="width: 400px;">
+            <div class="ui placeholder segment">
+                <div class="ui two column very relaxed stackable grid">
+                    <div class="column">
+                        <form method="post" action="/passenger">
+                            <div class="ui form">
+                                <div class="field">
+                                    <label>Username</label>
+                                    <div class="ui left icon input">
+                                        <input type="text" placeholder="Username" name="name">
+                                        <i class="user icon"></i>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Amount</label>
+                                    <div class="ui left icon input">
+                                        <input type="price" name="amount">
+                                        <i class="money icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h2 style="padding-top: 20px;">Choose your location</h2>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"></label>
+                                        <input placeholder="" style="display: none;" type="text" class="form-control"
+                                            name="name" value="{{id}}">
+                                    </div>
+
+                                    <small id="emailHelp" class="form-text text-muted"> Sibusiso paid
+                                        R21</small>
+
+
+                                    <div class="ui positive message">
+                                        <i class="close icon"></i>
+                                        <div class="header">
+                                            was successful your change is
+                                        </div>
+                                        <p>Go to your <b>special offers</b> page to see now.</p>
+                                    </div>
+
+
+                                    <div style="padding-top: 10%;">
+                                        <select class="custom-select custom-select-sm city" name="destination">
+                                            <option selected value="0">Select Location</option>
+                                            <option class="city" value="{{id}}">Gugulethu <small>
+                                                    R21</small></option>
+                                        </select>
+                                    </div>
+                                    <div style="padding-top: 3%;">
+                                        <button type="submit" class="btn btn-success town">Payment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="middle aligned column">
+                        <div class="ui segment">
+                            <h2 class="ui header">
+                                <i class="money icon"></i>
+                                <div class="content">
+                                    Price List
+                                    <div class="sub header">This is how much it costs to go to:</div>
+                                </div>
+                            </h2>
+                        </div>
+                        <table class="ui celled table">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="Name">Gugulethu</td>
+                                    <td data-label="price">R21</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+                <div class="ui vertical divider">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
